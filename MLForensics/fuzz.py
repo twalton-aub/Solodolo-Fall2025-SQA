@@ -7,11 +7,11 @@ import traceback
 from empirical.dataset_stats import getFileLength
 from mining.log_op_miner import (
     checkIfParsablePython,
-    #hasLogImport,            #extra (comment out)
+    hasLogImport,
     getPythonAtrributeFuncs
 )
 from mining.mining import (
-    giveTimeStamp,
+    #giveTimeStamp,                # not needed
     days_between
 )
 
@@ -99,11 +99,11 @@ def main():
 
     # mining/log.op.miner.py
     fuzz_onearg(checkIfParsablePython, random_path)
-    #fuzz_onearg(hasLogImport, random_string)            # extra one done accidentally (comment out)
+    fuzz_onearg(hasLogImport, random_string)
     fuzz_onearg(getPythonAtrributeFuncs, random_string)
 
     # mining/mining.py
-    fuzz_noarg(giveTimeStamp)
+    #fuzz_noarg(giveTimeStamp)        # not needed
     fuzz_twoarg(days_between, random_date, random_date)
 
     print("\nFuzzing completed. Check /crashes folder for crash logs.")
