@@ -1,3 +1,5 @@
+### Logging, in Workshop 8 style, will be done on this file for the project and will be indicated by the triple hash (#) surrounded comments
+
 '''
 Farzana Ahamed Bhuiyan (Lead) 
 Akond Rahman 
@@ -15,12 +17,18 @@ import numpy as np
 
 
 def giveTimeStamp():
+  ### [1] LOG: Generating timestamp for forensic trace log ###
+	
   tsObj = time.time()
-  strToret = datetime.datetime.fromtimestamp(tsObj).strftime(constants.TIME_FORMAT) 
+  strToret = datetime.datetime.fromtimestamp(tsObj).strftime(constants.TIME_FORMAT)
+
+  ### [2] LOG: Finished Generating timestamp (print timestamp) ###
   return strToret
   
 
 def getCSVData(dic_, dir_repo):
+	### [3] LOG: Beginning CSV data extraction for ML script ###
+	
 	temp_list = []
 	for TEST_ML_SCRIPT in dic_:
 		# print(constants.ANALYZING_KW + TEST_ML_SCRIPT) 
@@ -134,10 +142,14 @@ def getCSVData(dic_, dir_repo):
 
 		temp_list.append( the_tup )
 		# print('='*25)
+
+		### [4] LOG: Finished CSV data extraction for ML Script (print the list maybe) ###
 	return temp_list
   
   
 def getAllPythonFilesinRepo(path2dir):
+	### [5] LOG: Scanning repository for valid python files ###
+	
 	valid_list = []
 	for root_, dirnames, filenames in os.walk(path2dir):
 		for file_ in filenames:
@@ -146,10 +158,14 @@ def getAllPythonFilesinRepo(path2dir):
 				if (file_.endswith( constants.PY_FILE_EXTENSION ) and (py_parser.checkIfParsablePython( full_path_file ) )   ):
 					valid_list.append(full_path_file) 
 	valid_list = np.unique(  valid_list )
+
+	### [6] LOG: Finished scanning for valid python files (print list maybe) ###
 	return valid_list
 
 
 def runFameML(inp_dir, csv_fil):
+	### [7] LOG: Running FAME_ML analysis on input directory ###
+	
 	output_event_dict = {}
 	df_list = [] 
 	list_subfolders_with_paths = [f.path for f in os.scandir(inp_dir) if f.is_dir()]
@@ -164,10 +180,14 @@ def runFameML(inp_dir, csv_fil):
 	full_df = pd.DataFrame( df_list ) 
 	# print(full_df.head())
 	full_df.to_csv(csv_fil, header= constants.CSV_HEADER, index=False, encoding= constants.UTF_ENCODING)     
+
+	### [8] LOG: Finished running FAME_ML analysis (print output maybe) ###
 	return output_event_dict
 
 
 if __name__=='__main__':
+	### [9] LOG: Main execution started ###
+	
 	command_line_flag = False ## after acceptance   
 
 	t1 = time.time()
@@ -208,4 +228,5 @@ if __name__=='__main__':
 	print('Duration: {} minutes'.format(time_diff) )
 	print('*'*100 )
 
+	### [10] LOG: Main execution finished ###
 
