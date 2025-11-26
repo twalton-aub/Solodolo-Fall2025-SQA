@@ -1,0 +1,26 @@
+name: Run MLForensics Fuzzer
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  fuzz:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Run fuzz.py
+        run: python MLForensics/fuzz.py
+
+      - name: List crash files
+        run: |
+          cd MLForensics
+          ls -R crashes || echo "No crashes generated"
