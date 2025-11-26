@@ -7,7 +7,7 @@ import traceback
 from empirical.dataset_stats import getFileLength
 from mining.log_op_miner import (
     checkIfParsablePython,
-    hasLogImport,
+    #hasLogImport,            #extra (comment out)
     getPythonAtrributeFuncs
 )
 from mining.mining import (
@@ -99,7 +99,7 @@ def main():
 
     # mining/log.op.miner.py
     fuzz_onearg(checkIfParsablePython, random_path)
-    fuzz_onearg(hasLogImport, random_string)
+    #fuzz_onearg(hasLogImport, random_string)            # extra one done accidentally (comment out)
     fuzz_onearg(getPythonAtrributeFuncs, random_string)
 
     # mining/mining.py
