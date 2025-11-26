@@ -4,8 +4,8 @@ import string
 import traceback
 
 ## Imports from the project folders
-from empirical.dataset.stats import getFileLength
-from mining.log.op.miner import (
+from empirical.dataset_stats import getFileLength
+from mining.log_op_miner import (
     checkIfParsablePython,
     hasLogImport,
     getPythonAtrributeFuncs
