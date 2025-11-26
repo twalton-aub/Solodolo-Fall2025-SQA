@@ -23,9 +23,10 @@ jobs:
           pip install pandas GitPython
 
       - name: Run fuzz.py
-        run: python MLForensics/fuzz.py
+        working-directory: MLForensics
+        run: python fuzz.py
 
       - name: List crash files
+        working-directory: MLForensics
         run: |
-          cd MLForensics
           ls -R crashes || echo "No crashes generated"
